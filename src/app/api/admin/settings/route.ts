@@ -1,3 +1,4 @@
+
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { readSession } from '@/lib/auth';
@@ -15,19 +16,22 @@ type SiteSettings = {
 };
 
 export async function GET() {
-  const s = await readSession('admin_session');
+  const session = await readSession('admin_session');
 
-  if (s?.role !== 'admin') {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (session?.role !== 'admin') {
+    return NextResponse.json(
+      { error: 'Unauthorized' },
+      { status: 401 },
+    );
   }
 
-  const d = await db();
-  const settings = d.collection<SiteSettings>('settings');
+  const database = await db();
+
+  // Explicitly define _id as a string for this collection.
+  const settings = database.collection<SiteSettings>('settings');
   const saved = await settings.findOne({ _id: 'site' });
 
   return NextResponse.json({
-    ...DEFAULTS,
-    ...saved,
     supportUrl:
       typeof saved?.supportUrl === 'string'
         ? saved.supportUrl
@@ -40,16 +44,22 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const s = await readSession('admin_session');
+  const session = await readSession('admin_session');
 
-  if (s?.role !== 'admin') {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (session?.role !== 'admin') {
+    return NextResponse.json(
+      { error: 'Unauthorized' },
+      { status: 401 },
+    );
   }
 
   try {
     const body = await request.json();
+
     const supportUrl = String(body.supportUrl || '').trim();
-    const tutorialVideoUrl = String(body.tutorialVideoUrl || '').trim();
+    const tutorialVideoUrl = String(
+      body.tutorialVideoUrl || '',
+    ).trim();
 
     if (!/^https:\/\//i.test(supportUrl)) {
       return NextResponse.json(
@@ -58,15 +68,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (tutorialVideoUrl && !/^https:\/\//i.test(tutorialVideoUrl)) {
+    if (
+      tutorialVideoUrl &&
+      !/^https:\/\//i.test(tutorialVideoUrl)
+    ) {
       return NextResponse.json(
-        { error: 'Tutorial video URL must start with https://' },
+        {
+          error:
+            'Tutorial video URL must start with https://',
+        },
         { status: 400 },
       );
     }
 
-    const d = await db();
-    const settings = d.collection<SiteSettings>('settings');
+    const database = await db();
+    const settings =
+      database.collection<SiteSettings>('settings');
 
     await settings.updateOne(
       { _id: 'site' },
@@ -85,10 +102,13 @@ export async function POST(request: NextRequest) {
       supportUrl,
       tutorialVideoUrl,
     });
-  } catch {
+  } catch (error) {
+    console.error('Admin settings save error:', error);
+
     return NextResponse.json(
       { error: 'Could not save settings.' },
       { status: 400 },
     );
   }
 }
+  
