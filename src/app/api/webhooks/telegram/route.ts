@@ -12,6 +12,11 @@ export async function POST(request:NextRequest){
     await fetch(`https://api.telegram.org/bot${token}/sendMessage`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({chat_id:chatMessage.chat.id,text:`Chat ID: ${chatMessage.chat.id}\nType: ${chatMessage.chat.type}`}),cache:'no-store'});
     return NextResponse.json({ok:true});
   }
+  const membership=update.chat_member;
+  if(membership?.chat?.id && membership?.new_chat_member?.status==='member' && membership?.invite_link?.invite_link){
+    try{const database=await db();const usedLink=String(membership.invite_link.invite_link);await database.collection('orders').updateMany({'inviteLinks.inviteLink':usedLink},{$set:{'inviteLinks.$[link].status':'used','inviteLinks.$[link].usedAt':new Date(),updatedAt:new Date()}},{arrayFilters:[{'link.inviteLink':usedLink}]});}catch(e){return NextResponse.json({error:e instanceof Error?e.message:'Could not record invite-link use.'},{status:500});}
+    return NextResponse.json({ok:true,inviteLinkMarkedUsed:true});
+  }
   const join=update.chat_join_request;
   if(!join?.chat?.id||!join?.from?.id)return NextResponse.json({ok:true});
   try{

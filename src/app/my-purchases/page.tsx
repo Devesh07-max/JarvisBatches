@@ -1,0 +1,3 @@
+import Link from 'next/link';import {db} from '@/lib/db';import SiteHeader from '@/components/SiteHeader';import MyPurchases from '@/components/MyPurchases';
+export const dynamic='force-dynamic';
+export default async function MyPurchasesPage(){const d=await db();const settings=await d.collection('settings').findOne({_id:'site'});return <main className="container"><SiteHeader supportUrl={settings?.supportUrl||'https://t.me/'}/><div className="page-content"><MyPurchases/></div><footer className="footer"><Link href="/terms">Terms</Link> · <Link href="/privacy">Privacy</Link> · <Link href="/refunds">Refunds</Link></footer></main>}
