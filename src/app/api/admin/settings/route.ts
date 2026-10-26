@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { readSession } from '@/lib/auth';
@@ -21,15 +20,19 @@ export async function GET() {
   if (session?.role !== 'admin') {
     return NextResponse.json(
       { error: 'Unauthorized' },
-      { status: 401 },
+      { status: 401 }
     );
   }
 
   const database = await db();
-  const settings = database.collection<SiteSettings>('settings');
-  const saved = await settings.findOne({ _id: 'site' });
+  const settingsCollection =
+    database.collection<SiteSettings>('settings');
+
+  const saved = await settingsCollection.findOne({ _id: 'site' });
 
   return NextResponse.json({
+    ...DEFAULTS,
+    ...saved,
     supportUrl:
       typeof saved?.supportUrl === 'string'
         ? saved.supportUrl
@@ -47,21 +50,22 @@ export async function POST(request: NextRequest) {
   if (session?.role !== 'admin') {
     return NextResponse.json(
       { error: 'Unauthorized' },
-      { status: 401 },
+      { status: 401 }
     );
   }
 
   try {
     const body = await request.json();
+
     const supportUrl = String(body.supportUrl || '').trim();
     const tutorialVideoUrl = String(
-      body.tutorialVideoUrl || '',
+      body.tutorialVideoUrl || ''
     ).trim();
 
     if (!/^https:\/\//i.test(supportUrl)) {
       return NextResponse.json(
         { error: 'Support URL must start with https://' },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -71,14 +75,15 @@ export async function POST(request: NextRequest) {
     ) {
       return NextResponse.json(
         { error: 'Tutorial video URL must start with https://' },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
     const database = await db();
-    const settings = database.collection<SiteSettings>('settings');
+    const settingsCollection =
+      database.collection<SiteSettings>('settings');
 
-    await settings.updateOne(
+    await settingsCollection.updateOne(
       { _id: 'site' },
       {
         $set: {
@@ -87,7 +92,7 @@ export async function POST(request: NextRequest) {
           updatedAt: new Date(),
         },
       },
-      { upsert: true },
+      { upsert: true }
     );
 
     return NextResponse.json({
@@ -95,12 +100,10 @@ export async function POST(request: NextRequest) {
       supportUrl,
       tutorialVideoUrl,
     });
-  } catch (error) {
-    console.error('Admin settings save error:', error);
-
+  } catch {
     return NextResponse.json(
       { error: 'Could not save settings.' },
-      { status: 400 },
+      { status: 400 }
     );
   }
-}
+          }
