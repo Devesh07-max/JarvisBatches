@@ -1,0 +1,4 @@
+import { NextResponse } from 'next/server';
+import { readSession } from '@/lib/auth';
+import { createHash } from 'crypto';
+export async function POST(){const s=await readSession('admin_session');if(s?.role!=='admin')return NextResponse.json({error:'Unauthorized'},{status:401});const cloudName=process.env.CLOUDINARY_CLOUD_NAME;const apiKey=process.env.CLOUDINARY_API_KEY;const apiSecret=process.env.CLOUDINARY_API_SECRET;if(!cloudName||!apiKey||!apiSecret)return NextResponse.json({error:'Configure Cloudinary environment variables first.'},{status:503});const timestamp=Math.floor(Date.now()/1000);const folder='jarvis-batches';const toSign=`folder=${folder}&timestamp=${timestamp}${apiSecret}`;const signature=createHash('sha1').update(toSign).digest('hex');return NextResponse.json({cloudName,apiKey,timestamp,folder,signature});}

@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Privacy(){return <main className="container"><Link href="/">← Home</Link><h1>Privacy Policy</h1><p>Replace this starter text with your actual privacy policy before launch. Explain that Telegram user ID, order details, payment identifiers and course access records are processed to deliver purchases, prevent fraud and provide support. Explain retention, contact details, and applicable rights.</p></main>}

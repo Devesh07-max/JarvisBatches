@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Refunds(){return <main className="container"><Link href="/">← Home</Link><h1>Refund & Cancellation Policy</h1><p>Replace this starter text with your actual policy before accepting live payments. Clearly describe eligibility, time limits, how to request a refund, exceptions, and support contact. Ensure the policy matches your business and applicable law.</p></main>}

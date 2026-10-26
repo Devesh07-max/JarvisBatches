@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Terms(){return <main className="container"><Link href="/">← Home</Link><h1>Terms & Conditions</h1><p>Replace this starter text with your actual course delivery terms before accepting live payments. State exactly what each course includes, access duration, device/account rules, support contact, and circumstances where access may be suspended.</p><p>Course access is provided after payment confirmation. Students must not redistribute paid course material or share private invite links.</p></main>}
