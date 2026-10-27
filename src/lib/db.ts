@@ -27,3 +27,11 @@ async function ensureIndexes(database: Db) {
   await indexesReady;
 }
 export type AnyDoc = Document & Record<string, any>;
+
+
+export interface SiteSettings extends Document {
+  _id: string;
+  supportUrl?: string;
+  tutorialVideoUrl?: string;
+  updatedAt?: Date;
+}
