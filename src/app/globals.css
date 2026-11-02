@@ -237,3 +237,175 @@
   .demo-arrow-next { right: 5px; }
   .demo-heading h2 { font-size: 20px; }
 }
+
+
+/* Final responsive hero and admin layout refinement.
+   Deliberately leaves course demo screenshot slider styles untouched. */
+.hero.hero-light {
+  min-height: 365px;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
+  gap: 10px;
+  padding: 22px 22px 18px 24px;
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 76% 44%, rgba(126,213,255,.42), transparent 43%),
+    linear-gradient(105deg, #f9fbff 0%, #eef6ff 52%, #e3f4ff 100%);
+}
+.hero.hero-light .hero-copy { padding: 8px 0 8px 4px; }
+.hero.hero-light .hero h1 { font-size: clamp(42px, 5.5vw, 68px); }
+.hero.hero-light h1 { font-size: clamp(42px, 5.5vw, 68px); }
+.hero.hero-light h2 { font-size: clamp(20px, 2.55vw, 30px); }
+.hero.hero-light .hero-copy>p { max-width: 430px; font-size: 14px; line-height: 1.5; }
+.hero.hero-light .hero-actions { gap: 10px; margin-top: 18px; }
+.hero.hero-light .hero-actions .btn { padding: 12px 17px; font-size: 12px; }
+.hero.hero-light .hero-trust { margin-top: 16px; }
+.hero.hero-light .hero-art-wrap {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  max-height: 335px;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.hero.hero-light .hero-art-wrap:before { inset: 4%; }
+.hero.hero-light .hero-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 560px;
+  max-height: 335px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+.admin-page { max-width: 1320px; padding-top: 18px; }
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  border: 1px solid #dce6fa;
+  border-radius: 16px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 8px 24px rgba(31,71,145,.08);
+}
+.admin-topbar .logo,
+.admin-topbar .brand-lockup { flex: 0 0 auto; }
+.admin-topbar .row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.admin-topbar .btn { min-height: 38px; padding: 9px 14px; white-space: nowrap; }
+.admin-layout { display: grid; grid-template-columns: 218px minmax(0,1fr); align-items: start; gap: 20px; }
+.admin-layout .sidebar {
+  position: sticky;
+  top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #dce6fa;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(31,71,145,.07);
+}
+.admin-layout .sidebar>b {
+  display: block;
+  padding: 5px 9px 11px;
+  color: #71809a;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.admin-layout .sidebar>a {
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #243654;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.admin-layout .sidebar>a:hover {
+  background: #edf4ff;
+  color: #075fdc;
+}
+.admin-layout .sidebar .small { padding: 8px 9px 0; line-height: 1.5; }
+.admin-main { min-width: 0; }
+.admin-page-heading { margin: 4px 0 18px; }
+.admin-page-heading h1 { margin: 9px 0 5px; font-size: clamp(25px,3vw,34px); letter-spacing: -.045em; }
+.admin-page-heading p { margin: 0; }
+.admin-main>.stack { min-width: 0; }
+.admin-main .card { min-width: 0; }
+.admin-thumb {
+  display: block;
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  max-width: 64px;
+  object-fit: cover;
+  border: 1px solid #dce6fa;
+  border-radius: 10px;
+  background: #f3f7ff;
+}
+.admin-main .row { min-width: 0; }
+.admin-main .row>div { min-width: 0; }
+.admin-main table { display: table; }
+@media(max-width:760px) {
+  .hero.hero-light {
+    grid-template-columns: minmax(0,1fr);
+    gap: 2px;
+    min-height: 0;
+    padding: 18px 16px 8px;
+    border-radius: 20px;
+  }
+  .hero.hero-light .hero-copy { padding: 2px 0 0; }
+  .hero.hero-light h1 { font-size: clamp(36px,9.4vw,48px); line-height: 1; margin: 13px 0 8px; }
+  .hero.hero-light h2 { font-size: clamp(18px,4.9vw,23px); line-height: 1.18; margin-bottom: 8px; }
+  .hero.hero-light .hero-copy>p { max-width: 100%; font-size: 12px; line-height: 1.45; }
+  .hero.hero-light .hero-actions { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+  .hero.hero-light .hero-actions .btn { width: auto; min-height: 39px; padding: 10px 12px; font-size: 10px; }
+  .hero.hero-light .hero-trust { margin-top: 10px; }
+  .hero.hero-light .hero-art-wrap { height: auto; max-height: none; margin: 0 -3px; }
+  .hero.hero-light .hero-art { width: 100%; height: auto; max-height: 205px; object-fit: contain; }
+  .admin-page { padding: 10px 12px 28px; }
+  .admin-topbar { padding: 10px; gap: 9px; }
+  .admin-topbar .row { width: 100%; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .admin-topbar .row .btn { justify-content: center; padding: 9px 8px; font-size: 11px; }
+  .admin-layout { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .admin-layout .sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 6px;
+    padding: 9px;
+  }
+  .admin-layout .sidebar>b { grid-column: 1/-1; padding: 2px 5px 5px; }
+  .admin-layout .sidebar>a { justify-content: center; min-height: 42px; padding: 8px 5px; text-align: center; font-size: 10px; }
+  .admin-layout .sidebar .small { grid-column: 1/-1; padding: 3px 5px; }
+  .admin-page-heading { margin: 3px 0 13px; }
+  .admin-main .card { padding: 15px; }
+  .admin-thumb { flex-basis: 52px; width: 52px; height: 52px; max-width: 52px; }
+}
+
+/* Main course-cover preview only; .admin-preview demo screenshots remain unchanged. */
+.admin-course-image-preview {
+  display: block;
+  width: min(100%, 180px);
+  height: 112px;
+  max-width: 180px;
+  object-fit: contain;
+  object-position: left center;
+  padding: 4px;
+  border: 1px solid #dce6fa;
+  border-radius: 10px;
+  background: #f5f8ff;
+}
+@media(max-width:760px) {
+  .admin-course-image-preview { width: min(100%, 150px); height: 94px; }
+}
