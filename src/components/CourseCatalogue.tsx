@@ -65,7 +65,7 @@ export default function CourseCatalogue({ courses }: { courses: Course[] }) {
         <div className="grid">
           {filteredCourses.map((course) => (
             <article className="card course-card" key={course._id}>
-              {course.imageUrl ? <img className="course-image" src={course.imageUrl} alt={course.name} loading="lazy" /> : <div className="course-placeholder" aria-label="Course image not added">📚</div>}
+              <div className="course-image-frame">{course.imageUrl ? <img className="course-image" src={course.imageUrl} alt={course.name} loading="lazy" /> : <div className="course-placeholder" aria-label="Course image not added">📚</div>}</div>
               <div className="course-card-body">
                <span className="course-category">{course.category || 'JARVIS BATCH'}</span>
                <h2>{course.name}</h2>

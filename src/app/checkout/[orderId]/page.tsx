@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { db } from '@/lib/db';
 import Checkout from '@/components/Checkout';
 import SiteHeader from '@/components/SiteHeader';
+import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
@@ -35,15 +36,13 @@ export default async function CheckoutPage({
   }
 
   return (
-    <main className="container">
+    <main className="container checkout-page-shell">
       <SiteHeader
         supportUrl={settings?.supportUrl || 'https://t.me/'}
       />
 
-      <div
-        style={{ maxWidth: 760, margin: '30px auto' }}
-        className="card stack course-detail-card"
-      >
+      <div className="checkout-breadcrumb"><Link href="/#courses">← Back to all batches</Link><span>Secure course enrolment</span></div>
+      <div className="card stack course-detail-card">
         {course.imageUrl && (
           <img
             className="checkout-image"
@@ -52,9 +51,9 @@ export default async function CheckoutPage({
           />
         )}
 
-        <span className="pill">SECURE CHECKOUT</span>
+        <span className="pill checkout-pill">✦ &nbsp; JARVIS BATCHES · SECURE ENROLMENT</span>
 
-        <h1>{course.name}</h1>
+        <div className="checkout-title-block"><h1>{course.name}</h1><p>Everything you need to get started, in one place.</p></div>
 
         <p className="muted course-description">
           {course.description ||
@@ -115,9 +114,7 @@ export default async function CheckoutPage({
           </section>
         )}
 
-        <div className="price">
-          ₹{(course.pricePaise / 100).toLocaleString('en-IN')}
-        </div>
+        <div className="checkout-price-panel"><span>COURSE PRICE</span><div className="price">₹{(course.pricePaise / 100).toLocaleString('en-IN')}</div><small>One-time payment · No subscription</small></div>
 
         <Checkout slug={course.slug} />
 

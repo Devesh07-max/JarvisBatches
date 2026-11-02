@@ -35,7 +35,7 @@ export default async function Home(){
      </div>
      <div className="hero-trust"><span className="trust-icon">✦</span><div><b>Learn at your own pace</b><small>Browse batches · Secure checkout · Telegram access after verified payment</small></div></div>
     </div>
-    <div className="hero-art-wrap"><div className="hero-glow"/><img className="hero-art" src="/jarvis-hero-art.png" alt="JARVIS friendly robot mascot with graduation cap and Telegram learning theme"/><span className="floating-tag tag-premium">♛ &nbsp; Premium Courses</span><span className="floating-tag tag-access">∞ &nbsp; Course Access</span></div>
+    <div className="hero-art-wrap"><div className="hero-glow"/><img className="hero-art" src="/jarvis-hero-art.png" alt="JARVIS friendly robot mascot with graduation cap and Telegram learning theme"/></div>
     <div className="hero-spark spark-one"/><div className="hero-spark spark-two"/>
    </section>
 
@@ -63,7 +63,7 @@ export default async function Home(){
   </div>
   <footer className="footer footer-premium">
    <div className="footer-main"><div className="footer-brand-block"><div className="footer-brand"><img src="/jarvis-batches-logo.webp" alt="JARVIS Batches logo"/><span><b>JARVIS</b><strong>Batches</strong></span></div><p>Empowering aspirants. Building success.</p></div>
-    <div><h3>Quick Links</h3><Link href="/#home">⌂ &nbsp; Home</Link><Link href="/#courses">▣ &nbsp; Courses</Link><Link href="/#tutorial">▶ &nbsp; Tutorials</Link><Link href="/my-purchases">♛ &nbsp; My Purchases</Link></div>
+    <div><h3>Quick Links</h3><Link href="/#home">⌂ &nbsp; Home</Link><Link href="/#courses">▣ &nbsp; Courses</Link><Link href="/#tutorial">▶ &nbsp; Tutorials</Link><Link href="/my-purchases">♛ &nbsp; My Purchases</Link><Link className="footer-admin-link" href="/admin/login">✦ &nbsp; Admin Panel</Link></div>
     <div><h3>Support</h3><a href={supportUrl} target="_blank" rel="noreferrer">◉ &nbsp; Contact Us</a><Link href="/terms">▤ &nbsp; Terms &amp; Conditions</Link><Link href="/privacy">▣ &nbsp; Privacy Policy</Link><Link href="/refunds">↩ &nbsp; Refund Policy</Link></div>
     <div><h3>Connect With Us</h3><a className="footer-social" href={supportUrl} target="_blank" rel="noreferrer"><span>➤</span> Telegram</a></div>
    </div>
