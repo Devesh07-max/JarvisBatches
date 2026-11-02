@@ -2,6 +2,7 @@
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/db';
 import Checkout from '@/components/Checkout';
+import DemoScreenshotSlider from '@/components/DemoScreenshotSlider';
 import SiteHeader from '@/components/SiteHeader';
 import Link from 'next/link';
 
@@ -77,21 +78,7 @@ export default async function CheckoutPage({
         )}
 
         {Array.isArray(course.demoImages) && course.demoImages.length > 0 && (
-          <section className="demo-section stack">
-            <div>
-              <span className="pill">PREVIEW</span>
-              <h2>Demo Screenshots</h2>
-              <p className="muted">Swipe to explore sample screenshots from this batch.</p>
-            </div>
-            <div className="demo-gallery" aria-label="Batch demo screenshots">
-              {course.demoImages.slice(0, 4).map((url: string, index: number) => (
-                <a className="demo-gallery-item" href={url} target="_blank" rel="noreferrer" key={`${url}-${index}`}>
-                  <img src={url} alt={`${course.name} demo screenshot ${index + 1}`} loading="lazy" />
-                  <span>{index + 1} / {Math.min(course.demoImages.length, 4)}</span>
-                </a>
-              ))}
-            </div>
-          </section>
+          <DemoScreenshotSlider images={course.demoImages} courseName={course.name} />
         )}
 
         {settings?.tutorialVideoUrl && (
