@@ -27,13 +27,13 @@ export default async function Home(){
     <div className="hero-copy">
      <span className="eyebrow"><span>🚀</span> Learn · Prepare · Excel</span>
      <h1>JARVIS <span>Batches</span></h1>
-     <h2>Your Ultimate Learning Partner<br/>in <span>Telegram</span> Batches</h2>
-     <p>Discover quality course content, focused preparation resources and convenient access — all in one place.</p>
+     <h2>Your Ultimate Learning Partner<br/>in <span>Telegram</span> <b className="hero-telegram-mark">➤</b> Batches</h2>
+     <p>Get premium course content, expert guidance and lifetime access — all in one place!</p>
      <div className="hero-actions">
       <Link className="btn btn-gradient" href="#courses"><span>➤</span> Explore Courses <b>→</b></Link>
-      {tutorialUrl ? <a className="btn btn-outline" href="#tutorial-media"><span className="play-icon">▶</span> Watch Tutorial</a> : <Link className="btn btn-outline" href="#tutorial"><span className="play-icon">▶</span> How It Works</Link>}
+      {tutorialUrl ? <a className="btn btn-outline" href="#tutorial-media"><span className="play-icon">▶</span> Watch Demo</a> : <Link className="btn btn-outline" href="#tutorial"><span className="play-icon">▶</span> Watch Demo</Link>}
      </div>
-     <div className="hero-trust"><span className="trust-icon">✦</span><div><b>Learn at your own pace</b><small>Browse batches · Secure checkout · Telegram access after verified payment</small></div></div>
+     <div className="hero-trust hero-trust-proof"><span className="trust-avatars" aria-hidden="true"><i>👨🏻</i><i>👨🏽</i><i>👨🏻</i><i>👨🏾</i><i>👨🏻</i></span><div><b>Trusted by</b><small>10K+ Students</small></div><span className="trust-stars" aria-label="Five star visual">★★★★★</span></div>
     </div>
     <div className="hero-art-wrap"><div className="hero-glow"/><img className="hero-art" src="/jarvis-hero-art.png" alt="JARVIS friendly robot mascot with graduation cap and Telegram learning theme"/></div>
     <div className="hero-spark spark-one"/><div className="hero-spark spark-two"/>
