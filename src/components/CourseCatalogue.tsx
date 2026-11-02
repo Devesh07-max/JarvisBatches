@@ -39,6 +39,7 @@ export default function CourseCatalogue({ courses }: { courses: Course[] }) {
           <span aria-hidden="true" className="search-icon">⌕</span>
           <span className="sr-only">Search courses</span>
           <input
+            id="course-search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search by course, subject or topic..."
@@ -65,11 +66,12 @@ export default function CourseCatalogue({ courses }: { courses: Course[] }) {
           {filteredCourses.map((course) => (
             <article className="card course-card" key={course._id}>
               {course.imageUrl ? <img className="course-image" src={course.imageUrl} alt={course.name} loading="lazy" /> : <div className="course-placeholder" aria-label="Course image not added">📚</div>}
-              <span className="pill">{course.category || 'ONLINE COURSE'}</span>
-              <h2>{course.name}</h2>
-              <p className="muted">{course.description || 'Course access delivered through Telegram after verified payment.'}</p>
-              <div className="price">₹{(course.pricePaise / 100).toLocaleString('en-IN')}</div>
-              <Link className="btn" href={`/checkout/${course.slug}`}>Buy Now →</Link>
+              <div className="course-card-body">
+               <span className="course-category">{course.category || 'JARVIS BATCH'}</span>
+               <h2>{course.name}</h2>
+               <p className="course-description-short">{course.description || 'Explore course details and start your preparation.'}</p>
+               <div className="course-card-bottom"><div><small>COURSE PRICE</small><strong>₹{(course.pricePaise / 100).toLocaleString('en-IN')}</strong></div><Link className="btn btn-card" href={`/checkout/${course.slug}`}>Enroll Now <b>→</b></Link></div>
+              </div>
             </article>
           ))}
         </div>

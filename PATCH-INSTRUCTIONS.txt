@@ -1,0 +1,37 @@
+JARVIS BATCHES PATCH — APPLY IN TERMUX
+
+IMPORTANT:
+- This ZIP contains only modified files, with paths relative to the project root.
+- Do not upload the whole project again.
+- Apply to your existing project on branch fix/full-code-reevaluation.
+- Do NOT commit .env files or secrets.
+- Do not merge/deploy to Production until Preview build and purchase flow are tested.
+
+1) Extract/copy this ZIP into your existing project root:
+   ~/jarvis-project/course-sales/jarvis-batches
+   Allow replacing files when prompted.
+
+2) In Termux:
+   cd ~/jarvis-project/course-sales/jarvis-batches
+   git status --short
+   git branch --show-current
+
+3) Ensure branch is fix/full-code-reevaluation. If it is not, stop and switch to that branch before proceeding:
+   git switch fix/full-code-reevaluation
+
+4) Review and push only these files:
+   git add src/components/SiteHeader.tsx src/components/AdminCourseManager.tsx src/components/AdminSiteSettings.tsx src/app/api/admin/settings/route.ts src/app/api/admin/courses/route.ts 'src/app/api/admin/courses/[id]/route.ts' 'src/app/api/purchases/[id]/access/route.ts' 'src/app/checkout/[orderId]/page.tsx' src/app/globals.css
+   git diff --cached --check
+   git commit -m "Add demo gallery and universal purchase channel"
+   git push origin fix/full-code-reevaluation
+
+5) In Vercel, open the Preview deployment for fix/full-code-reevaluation and check build status before testing.
+
+FEATURE NOTES:
+- Mobile header gets a direct Contact button while Contact remains in the menu.
+- Admin course editor supports up to four demo screenshots per course using existing Cloudinary image upload.
+- Admin Website Settings has optional universal channel name and numeric chat ID.
+- On the first verified access-page load for each paid order, the bot creates and saves a separate Telegram invite link with member_limit=1 for the universal channel, alongside the purchased batch links.
+- The bot must be admin in the universal channel with permission to create invite links.
+- Do not enter channel settings until testing Preview. Configure the universal channel name and numeric chat ID in Admin > Website Settings and click Save Website Settings.
+- This ZIP has not been built against live environment credentials. Test Preview carefully before any production deploy.

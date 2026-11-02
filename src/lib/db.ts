@@ -8,7 +8,7 @@ export async function db(): Promise<Db> {
   const clientPromise = globalForMongo.mongoClientPromise ?? new MongoClient(uri).connect();
   if (process.env.NODE_ENV !== 'production') globalForMongo.mongoClientPromise = clientPromise;
   const client = await clientPromise;
-  const database = client.db(process.env.MONGODB_DB || 'course_sales');
+  const database = client.db(process.env.MONGODB_DB || 'jarvis_batches');
   await ensureIndexes(database);
   return database;
 }
